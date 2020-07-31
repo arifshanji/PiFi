@@ -32,7 +32,7 @@ def AddNetwork(ssid, password):
     return returnCode
 
 def NetworkAdded():
-    process = subprocess.Popen("sleep 2; sudo reboot", shell=True)
+    process = subprocess.Popen("sudo systemctl restart autohotspot.service", shell=True)
 
 def start_server():
     app.run(host='0.0.0.0')
@@ -73,3 +73,4 @@ def parseSSID():
 # Main
 if __name__ == '__main__':
     start_server()
+

@@ -36,10 +36,10 @@ def NetworkAdded():
 
 def start_server():
     app.run(host='0.0.0.0')
-    print "Server Started"
+    print("Server Started")
 
 def parseSSID():
-    returnCode = subprocess.call(["sudo iwlist wlan0 scan > /tmp/scanOutput"], shell=True)
+    returnCode = subprocess.call(["sudo iw dev wlan0 scan ap-force > /tmp/scanOutput"], shell=True)
     if returnCode != 0:
         return []
     else:
@@ -50,8 +50,8 @@ def parseSSID():
 
         for line in inputFile:
             line = line.strip()
-            if "ESSID:" in line:
-                ssid = line[7:-1]
+            if "SSID:" in line:
+                ssid = line[6:]
                 if ssid != "":
                     newEntry = {'ssid': ssid,
                                 'protected': protected

@@ -3,7 +3,6 @@ import subprocess
 
 app = Flask(__name__)
 
-
 # Server
 
 @app.route("/verify")
@@ -23,6 +22,11 @@ def wifi():
         else:
             return jsonify(success=False)
 
+@app.after_request # blueprint can also be app~~
+def after_request(response):
+    header = response.headers
+    header['Access-Control-Allow-Origin'] = '*'
+    return response
 
 # Helper Functions
 

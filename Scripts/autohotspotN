@@ -45,8 +45,8 @@ createAdHocNetwork()
     ip a add "$hotspotip"/24 brd + dev "$wifidev"
     ip link set dev "$wifidev" up
     dhcpcd -k "$wifidev" >/dev/null 2>&1
-    systemctl start dnsmasq
-    systemctl start hostapd
+    systemctl restart dnsmasq
+    systemctl restart hostapd
     echo 1 > /proc/sys/net/ipv4/ip_forward
     python /usr/bin/hotspotWebserver.py
 }
